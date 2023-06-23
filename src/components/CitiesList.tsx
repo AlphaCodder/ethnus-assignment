@@ -1,15 +1,15 @@
 import React from 'react';
 import stateData from '../data/state.json';
-
-const CitiesList = ({ selectedState, handleSelectCity }) => {
-  const stateObj = stateData.filter((state) => state.stateName === selectedState) as unknown as {
-    stateId: string,
-    stateName: string,
-    city: Array<{
-      cityId: string,
-      cityName: string
-    }>
-  }
+type State = {
+  stateId: string,
+  stateName: string,
+  city: Array<{
+    cityId: string,
+    cityName: string
+  }>
+}
+const CitiesList = ({ selectedState, handleSelectCity }: { selectedState: any, handleSelectCity: any }) => {
+  const stateObj = stateData.filter((state) => state.stateName === selectedState) as unknown as State[];
   return (
     <div>
       <h2>List of Cities:</h2>
