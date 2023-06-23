@@ -3,27 +3,26 @@ import React, { useState } from 'react';
 import List from '../components/List';
 import CitiesList from '../components/CitiesList';
 import Result from '../components/Result';
+import stateData from '../data/state.json';
 
-const citiesData = [
-  { id: 1, name: 'City 1' },
-  { id: 2, name: 'City 2' },
-  { id: 3, name: 'City 3' },
-];
+
+const statesData = stateData
 
 const IndexPage = () => {
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedState, setSelectedState] = useState();
+  const [cityName, setCityName] = useState();
   const [resultUrl, setResultUrl] = useState('');
 
-  const handleSelectCity = (cityName) => {
-    setSelectedCity(cityName);
-    setResultUrl(`https://example.com/${cityName}`);
+  const handleSelectCity = (cityName: any) => {
+    setCityName(cityName);
+    setResultUrl(`https://states.gov.in/${selectedState}/${cityName}`);
   };
 
   return (
     <div>
       <h1>City Selection</h1>
-      <List cities={citiesData} onSelectCity={handleSelectCity} />
-      <CitiesList cities={citiesData} />
+      <List states={stateData} setSelectedState={setSelectedState} />
+      {selectedState && <CitiesList selectedState={selectedState} handleSelectCity={handleSelectCity} />}
       <Result url={resultUrl} />
     </div>
   );
