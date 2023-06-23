@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Result = ({ url }) => {
+const Result = ({ url }: { url: string }) => {
   return (
     <div>
       <h1>{url}</h1>
